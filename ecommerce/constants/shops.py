@@ -1,3 +1,3 @@
 MALE = 'm'
 FEMALE = 'f'
-image_path = 'image/'
+image_path = 'static/image/'
