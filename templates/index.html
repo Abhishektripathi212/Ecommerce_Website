@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        /* CSS for product list styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .product h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .product p {
+            color: #777;
+            margin-top: 10px;
+        }
+
+        .product button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .product button:hover {
+            background-color: #0056b3;
+        }
+        .logout-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff; /* Button text color */
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #0056b3;
+        }
+        header{
+            text-align: right;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'authentication:logout' %}" class="logout-button">Log Out</a>
+    </header>
+    <h1>Product List</h1>
+    <div class="product-list">
+        <div class="product">
+            <h2>Product 1</h2>
+            <p>Description: This is the description of Product 1.</p>
+            <p>Price: $10.00</p>
+            <button class="add-to-cart" data-product-id="1">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript for adding products to the cart
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.getAttribute('data-product-id');
+                // You can add JavaScript logic here to handle adding the product to the cart
+                alert(`Added Product ${productId} to Cart!`);
+            });
+        });
+    </script>
+</body>
+</html>
