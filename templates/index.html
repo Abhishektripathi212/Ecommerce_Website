@@ -34,6 +34,7 @@
             border-radius: 5px;
             width: 300px;
             text-align: center;
+            overflow: hidden;
         }
 
         .product h2 {
@@ -78,34 +79,41 @@
             padding: 5px;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <a href="{% url 'authentication:logout' %}" class="logout-button">Log Out</a>
+        <a href="{% url 'shop:cart_list' %}" class="logout-button">Cart</a>
     </header>
     <h1>Product List</h1>
     <div class="product-list">
-        <div class="product">
-            <h2>Product 1</h2>
-            <p>Description: This is the description of Product 1.</p>
-            <p>Price: $10.00</p>
-            <button class="add-to-cart" data-product-id="1">Add to Cart</button>
-        </div>
-
+        {% if products %}
+            {% for product in products %}
+                <div class="product">
+                    <div>
+                        <img src="/{{product.image}}">
+                    </div>
+                    <div>
+                        <p>Price: {{product.price}}</p>
+                        <p>Stock: {{product.stock}}</p>
+                        <a class="logout-button" href="{% url 'shop:product_details' pk=product.id %}" >Details</a>
+                        {% if product.stock %}
+                            <a class="logout-button" href="{% url 'shop:add_to_cart' product_id=product.id %}" >Add To Cart</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="product">
+                    <h2>No Data</h2>
+            </div>
+        {% endif %}
     </div>
-
-    <script>
-        // JavaScript for adding products to the cart
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const productId = button.getAttribute('data-product-id');
-                // You can add JavaScript logic here to handle adding the product to the cart
-                alert(`Added Product ${productId} to Cart!`);
-            });
-        });
-    </script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+        .product{
+            text-align: center;
+        }
+</style>
+<div class="product">
+    <div>
+        <img src="/{{product.image}}">
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Name</td>
+            <td>{{product.name}}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{product.description}}</td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td>{{product.price}}</td>
+        </tr>
+        <tr>
+            <td>Tags</td>
+            <td>
+                {% for tag in product.tags.all %}
+                    {{tag.name}}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td>
+                {{product.category}}
+            </td>
+        </tr>
+        <tr>
+            <td>Stock</td>
+            <td>
+                {{product.stock}}
+            </td>
+        </tr>
+    </tbody>
+    </table>
+        <a class="logout-button" href="{% url 'shop:product_details' pk=product.id %}" >Add To Cart</a>
+    </div>
+</div>
+{% endblock %}

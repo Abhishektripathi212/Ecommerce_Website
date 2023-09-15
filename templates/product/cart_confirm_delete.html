@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 border rounded p-4">
+            <h1>Delete Cart Item</h1>
+            <p>Are you sure you want to remove "{{ cart_item.product.name }}" from your cart?</p>
+            <form method="post">
+                {% csrf_token %}
+                <button class="logout-button" type="submit">Delete</button>
+                <a class="logout-button" href="{% url 'shop:cart_list' %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -47,7 +47,7 @@ class Tag(BaseModel):
 
 class Products(BaseModel):
     name = models.CharField(max_length=300)
-    Price = models.SmallIntegerField()
+    price = models.SmallIntegerField()
     stock = models.SmallIntegerField()
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to=image_path, null=True, blank=True)
@@ -69,7 +69,7 @@ class Products(BaseModel):
 class Cart(BaseModel):
     user = models.ForeignKey('authentication.User', on_delete=models.DO_NOTHING, related_name='cart_user')
     product = models.ForeignKey(Products, on_delete=models.DO_NOTHING)
-    quantity = models.SmallIntegerField()
+    quantity = models.SmallIntegerField(default=0)
 
     class Meta:
         db_table = 'cart'

@@ -16,7 +16,7 @@ class CategoryAdmin(BaseAdmin):
 
 @admin.register(Products)
 class ProductAdmin(BaseAdmin):
-    list_display = ['name', 'Price', 'stock']
+    list_display = ['name', 'price', 'stock']
 
     class Meta:
         model = Products
