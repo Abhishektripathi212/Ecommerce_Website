@@ -108,7 +108,7 @@
                         <p>Price: {{product.price}}</p>
                         <p>Stock: {{product.stock}}</p>
                         <a class="logout-button" href="{% url 'shop:product_details' pk=product.id %}" >Details</a>
-                        {% if product.stock %}
+                        {% if product.stock and request.user.id %}
                             <a class="logout-button" href="{% url 'shop:add_to_cart' product_id=product.id %}" >Add To Cart</a>
                         {% endif %}
                     </div>
