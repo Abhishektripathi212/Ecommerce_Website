@@ -23,7 +23,7 @@ This Django-based e-commerce project allows users to browse and purchase product
 
 Make sure you have the following installed:
 
-- Python (3.x recommended)
+- Python (3.8.10)
 - Django
 - Any additional dependencies listed in the project's requirements.txt file
 

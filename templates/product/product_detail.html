@@ -47,7 +47,7 @@
         </tr>
     </tbody>
     </table>
-        <a class="logout-button" href="{% url 'shop:product_details' pk=product.id %}" >Add To Cart</a>
+        <a class="logout-button" href="{% url 'shop:add_to_cart' product_id=product.id %}" >Add To Cart</a>
     </div>
 </div>
 {% endblock %}

@@ -88,8 +88,13 @@
 </head>
 <body>
     <header>
+        {% if not request.user.id %}
+            <a href="{% url 'authentication:login' %}" class="logout-button">Log In</a>
+        {% endif %}
         <a href="{% url 'authentication:logout' %}" class="logout-button">Log Out</a>
-        <a href="{% url 'shop:cart_list' %}" class="logout-button">Cart</a>
+        {% if request.user.id %}
+            <a href="{% url 'shop:cart_list' %}" class="logout-button">Cart</a>
+        {% endif %}
     </header>
     <h1>Product List</h1>
     <div class="product-list">

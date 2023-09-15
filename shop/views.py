@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, DeleteView
@@ -11,18 +10,13 @@ def product_view(request):
     data = Products.objects.all()
     return render(request, 'index.html', {'products': data})
 
-
 @login_required
 def add_to_cart(request, product_id):
     product = Products.objects.get(id=product_id)
-
-    if product.stock > 0:
-        product.stock -= 1
-        product.save()
-
     cart_item, created = Cart.objects.get_or_create(user=request.user, product_id=product_id)
-    cart_item.quantity += 1
-    cart_item.save()
+    if product.stock > cart_item.quantity:
+        cart_item.quantity += 1
+        cart_item.save()
 
     return redirect('shop:cart_list')
 
